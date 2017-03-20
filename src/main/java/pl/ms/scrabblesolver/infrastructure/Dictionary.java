@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -28,11 +29,11 @@ public class Dictionary {
      * builder - 1st character
      * value - map of
      */
-    private Map<Character, Map<Integer, Set<Word>>> words = new HashMap<>();
+    private Map<Character, Map<Integer, Set<String>>> words = new HashMap<>();
 
     // Create a builder that is the word's letters sorted alphabetically (and forced to one case)
     // Add the word to the list of wordsfinder accessed by the hash builder in H
-    private Map<Integer, Map<String, List<Word>>> wordKeys = new HashMap<>();
+    private Map<Integer, Map<String, List<String>>> wordKeys = new HashMap<>();
 
     private Set<Character> characters = new HashSet<>();
 
@@ -61,29 +62,29 @@ public class Dictionary {
         Integer textLength = text.length();
 
         // add to words map -> used for simple search
-        Map<Integer, Set<Word>> lwords = words.get(firstTextCharacter);
+        Map<Integer, Set<String>> lwords = words.get(firstTextCharacter);
         if (lwords == null) {
             lwords = new HashMap<>();
         }
-        Set<Word> lcwords = lwords.get(textLength);
+        Set<String> lcwords = lwords.get(textLength);
         if (lcwords == null) {
             lcwords = new HashSet<>();
         }
-        lcwords.add(word);
+        lcwords.add(text);
         lwords.put(textLength, lcwords);
         words.put(firstTextCharacter, lwords);
 
         // add to words map -> used for anagrams
-        Map<String, List<Word>> lwkwords = wordKeys.get(textLength);
+        Map<String, List<String>> lwkwords = wordKeys.get(textLength);
         if (lwkwords == null) {
             lwkwords = new HashMap<>();
         }
         String key = word.getCharactersSorted();
-        List<Word> klwkwords = lwkwords.get(key);
+        List<String> klwkwords = lwkwords.get(key);
         if (klwkwords == null) {
             klwkwords = new ArrayList<>();
         }
-        klwkwords.add(word);
+        klwkwords.add(text);
         lwkwords.put(key, klwkwords);
         wordKeys.put(textLength, lwkwords);
 
@@ -100,15 +101,15 @@ public class Dictionary {
             return ret;
         }
 
-        Map<Integer, Set<Word>> lwords = words.get(prefix.charAt(0));
+        Map<Integer, Set<String>> lwords = words.get(prefix.charAt(0));
         if (lwords == null) {
             return ret;
         }
-        for (Map.Entry<Integer, Set<Word>> entry : lwords.entrySet()) {
+        for (Map.Entry<Integer, Set<String>> entry : lwords.entrySet()) {
             if (entry.getKey() < prefix.length()) {
                 continue;
             }
-            entry.getValue().stream().filter(e -> e.startsWith(prefix)).forEachOrdered(ret::add);
+            entry.getValue().stream().filter(e -> e.startsWith(prefix)).forEachOrdered(s ->  ret.add(Word.of(s)));
         }
         return ret;
     }
@@ -119,39 +120,39 @@ public class Dictionary {
             return ret;
         }
 
-        Set<Word> lengthliners = new HashSet<>();
+        Set<String> lengthliners = new HashSet<>();
         if (c == '?') {
-            for (Map<Integer, Set<Word>> entry : words.values()) {
-                Set<Word> hs = entry.get(length);
+            for (Map<Integer, Set<String>> entry : words.values()) {
+                Set<String> hs = entry.get(length);
                 if (hs != null) {
                     lengthliners.addAll(hs);
                 }
             }
         } else {
-            Map<Integer, Set<Word>> lwords = words.get(c);
+            Map<Integer, Set<String>> lwords = words.get(c);
             if(lwords == null) {
-                return lengthliners;
+                return ret;
             }
-            Set<Word> hs = lwords.get(length);
+            Set<String> hs = lwords.get(length);
             if (hs != null) {
                 lengthliners.addAll(hs);
             }
         }
-        return lengthliners;
+        return lengthliners.parallelStream().map(Word::of).collect(Collectors.toSet());
     }
 
     public Set<Word> getByKey(String key) {
         Set<Word> res = new HashSet<>();
-        Map<String, List<Word>> lkwords = wordKeys.get(key.length());
+        Map<String, List<String>> lkwords = wordKeys.get(key.length());
         if (lkwords == null) {
             return res;
         }
-        List<Word> klkwords = lkwords.get(key);
+        List<String> klkwords = lkwords.get(key);
         if (klkwords == null) {
             return res;
         }
-        res.addAll(klkwords);
-        return res;
+
+        return klkwords.parallelStream().map(Word::of).collect(Collectors.toSet());
     }
 
     public Collection<Character> getCharacters() {
