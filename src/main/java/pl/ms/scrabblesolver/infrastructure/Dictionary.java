@@ -61,32 +61,32 @@ public class Dictionary {
         Character firstTextCharacter = text.charAt(0);
         Integer textLength = text.length();
 
-        // add to words map -> used for simple search
-        Map<Integer, Set<String>> lwords = words.get(firstTextCharacter);
-        if (lwords == null) {
-            lwords = new HashMap<>();
-        }
-        Set<String> lcwords = lwords.get(textLength);
-        if (lcwords == null) {
-            lcwords = new HashSet<>();
-        }
-        lcwords.add(text);
-        lwords.put(textLength, lcwords);
-        words.put(firstTextCharacter, lwords);
-
-        // add to words map -> used for anagrams
-        Map<String, List<String>> lwkwords = wordKeys.get(textLength);
-        if (lwkwords == null) {
-            lwkwords = new HashMap<>();
-        }
-        String key = word.getCharactersSorted();
-        List<String> klwkwords = lwkwords.get(key);
-        if (klwkwords == null) {
-            klwkwords = new ArrayList<>();
-        }
-        klwkwords.add(text);
-        lwkwords.put(key, klwkwords);
-        wordKeys.put(textLength, lwkwords);
+//        // add to words map -> used for simple search
+//        Map<Integer, Set<String>> lwords = words.get(firstTextCharacter);
+//        if (lwords == null) {
+//            lwords = new HashMap<>();
+//        }
+//        Set<String> lcwords = lwords.get(textLength);
+//        if (lcwords == null) {
+//            lcwords = new HashSet<>();
+//        }
+//        lcwords.add(text);
+//        lwords.put(textLength, lcwords);
+//        words.put(firstTextCharacter, lwords);
+//
+//        // add to words map -> used for anagrams
+//        Map<String, List<String>> lwkwords = wordKeys.get(textLength);
+//        if (lwkwords == null) {
+//            lwkwords = new HashMap<>();
+//        }
+//        String key = word.getCharactersSorted();
+//        List<String> klwkwords = lwkwords.get(key);
+//        if (klwkwords == null) {
+//            klwkwords = new ArrayList<>();
+//        }
+//        klwkwords.add(text);
+//        lwkwords.put(key, klwkwords);
+//        wordKeys.put(textLength, lwkwords);
 
         // add all characters that are used
         for (char ch : word.getText().toCharArray()) {
