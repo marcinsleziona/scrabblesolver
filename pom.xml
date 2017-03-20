@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>scrabbleSolver</name>
+	<name>scrabble-solver</name>
 	<description>Application to find valid words from the entered letters</description>
 
 	<parent>
