@@ -1,7 +1,6 @@
 package pl.ms.scrabblesolver.domain;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.*;
 
@@ -16,33 +15,29 @@ import java.util.Arrays;
         getterVisibility = JsonAutoDetect.Visibility.NONE,
         isGetterVisibility = JsonAutoDetect.Visibility.NONE,
         setterVisibility = JsonAutoDetect.Visibility.NONE)
-public class Word implements Serializable, Comparable<Word> {
+public class WordOld implements Serializable, Comparable<WordOld> {
 
-    private byte[] text;
+    private String text;
 
-    public static Word of(String text) {
-        Word w = new Word();
-        String trimmed = StringUtils.trim(text);
-        w.text = trimmed == null ? null : trimmed.getBytes();
+    public static WordOld of(String text) {
+        WordOld w = new WordOld();
+        w.text = StringUtils.trim(text);
         return w;
     }
 
     public boolean isEmpty() {
-        return ArrayUtils.isEmpty(text);
+        return StringUtils.isEmpty(text);
     }
 
     public String getText() {
-        if(text == null) {
-            return null;
-        }
-        return new String(text);
+        return text;
     }
 
     public int length() {
-        if (ArrayUtils.isEmpty(text)) {
+        if (StringUtils.isBlank(text)) {
             return 0;
         }
-        return text.length;
+        return text.length();
     }
 
     public Character charAt(int idx) {
@@ -52,20 +47,20 @@ public class Word implements Serializable, Comparable<Word> {
         if (idx >= this.length()) {
             return null;
         }
-        return getText().charAt(idx);
+        return text.charAt(idx);
     }
 
     public String getCharactersSorted() {
         if (text == null) {
             return null;
         }
-        char[] ctab = getText().toCharArray();
+        char[] ctab = text.toCharArray();
         Arrays.sort(ctab);
         return String.valueOf(ctab);
     }
 
     public boolean startsWith(String prefix) {
-        return StringUtils.startsWith(getText(), prefix);
+        return StringUtils.startsWith(text, prefix);
     }
 
     @Override
@@ -84,7 +79,7 @@ public class Word implements Serializable, Comparable<Word> {
     }
 
     @Override
-    public int compareTo(Word o) {
+    public int compareTo(WordOld o) {
         return CompareToBuilder.reflectionCompare(this, o);
     }
 
