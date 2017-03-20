@@ -4,8 +4,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import pl.ms.scrabblesolver.domain.Word;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /*
  * Created by Marcin on 2017-03-19.
@@ -14,15 +14,18 @@ import java.util.Set;
 public class WordsAllOfBuilder {
 
     /**
-     * build all possible words >= 2characters from the inputCharacters, '?' is replaced by the all possible characters
+     * build all possible words >= 2characters from the inputCharacters
      */
-    public Set<String> build(String inputCharacters) {
-        Set<String> ret = new HashSet<>();
+    public List<Word> build(String inputCharacters) {
         if (StringUtils.isBlank(inputCharacters)) {
-            return ret;
+            return new ArrayList<>();
         }
-        findCombinations(ret, "", inputCharacters);
-        return ret;
+        Set<String> res = new HashSet<>();
+        findCombinations(res, "", inputCharacters);
+
+        List<Word> lres = res.parallelStream().map(Word::of).collect(Collectors.toList());
+        Collections.sort(lres);
+        return lres;
     }
 
     private void findCombinations(Set<String> ret, String prefix, String str) {

@@ -38,7 +38,9 @@ public class WordsFinderImpl implements WordsFinder {
 
         Set<Word> res = new HashSet<>();
         Set<String> keys = new HashSet<>();
-        wordsAllOfBuilder.build(inputCharacters).parallelStream().forEach(p -> wordsFixedSizeBuilder.build(dictionary.getCharacters(), p).forEach(keys::add));
+        wordsAllOfBuilder.build(inputCharacters)
+                .parallelStream()
+                .forEach(p -> wordsFixedSizeBuilder.build(dictionary.getCharacters(), p.getText()).forEach(keys::add));
 
         keys.parallelStream().forEach(p -> dictionary.getByKey(p).stream().forEachOrdered(res::add));
         List<Word> lres = new ArrayList<>(res);

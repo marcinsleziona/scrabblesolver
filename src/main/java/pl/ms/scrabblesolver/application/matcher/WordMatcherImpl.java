@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
+import org.springframework.stereotype.Service;
 import pl.ms.scrabblesolver.domain.Word;
 import pl.ms.scrabblesolver.infrastructure.Dictionary;
 
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 /*
  * Created by Marcin on 2017-03-19.
  */
+@Service
 public class WordMatcherImpl implements WordMatcher {
 
     private Dictionary dictionary;

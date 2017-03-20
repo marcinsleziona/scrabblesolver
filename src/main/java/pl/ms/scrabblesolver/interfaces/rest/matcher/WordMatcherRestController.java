@@ -1,4 +1,4 @@
-package pl.ms.scrabblesolver.interfaces.rest.finder;
+package pl.ms.scrabblesolver.interfaces.rest.matcher;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,26 +6,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pl.ms.scrabblesolver.application.finder.WordsFinder;
+import pl.ms.scrabblesolver.application.matcher.WordMatcher;
 import pl.ms.scrabblesolver.domain.Word;
 
 import java.util.List;
 
 /*
- * Created by Marcin on 2017-03-19.
+ * Created by Marcin on 2017-03-20.
  */
 @RestController
 @RequestMapping("/words")
-public class WordsFinderRestController {
+public class WordMatcherRestController {
 
-    private WordsFinder wordsFinder;
+    private WordMatcher wordMatcher;
 
     @Autowired
-    public WordsFinderRestController(WordsFinder wordsFinder) {
-        this.wordsFinder = wordsFinder;
+    public WordMatcherRestController(WordMatcher wordMatcher) {
+        this.wordMatcher = wordMatcher;
     }
 
-    @GetMapping("/find")
+    @GetMapping("/match")
     public List<Word> find(@RequestParam("input") String inputCharacters) {
-        return this.wordsFinder.findWords(inputCharacters);
+        return this.wordMatcher.findMatchingWords(inputCharacters);
     }
 }
