@@ -70,7 +70,7 @@ public class Word implements Serializable, Comparable<Word> {
 
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.SIMPLE_STYLE);
+        return getText();
     }
 
     @Override
