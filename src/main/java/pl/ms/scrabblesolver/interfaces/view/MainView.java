@@ -41,9 +41,17 @@ public class MainView extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-        GridLayout grid = new GridLayout(4, 5);
-        grid.setSpacing(true);
-        grid.setSizeFull();
+        VerticalLayout content = new VerticalLayout();
+        setContent(content);
+
+        HorizontalLayout titleBar = new HorizontalLayout();
+        titleBar.setWidth("100%");
+        content.addComponent(titleBar);
+
+        Label title = new Label("Scrabble Solver");
+        titleBar.addComponent(title);
+        titleBar.setComponentAlignment(title, Alignment.MIDDLE_CENTER);
+        titleBar.setExpandRatio(title, 1.0f);
 
         // add text
         TextField inputWordField = new TextField();
@@ -57,9 +65,13 @@ public class MainView extends UI {
                 .asRequired("Please enter the text !")
                 .withValidator(new RegexpValidator("Only characters (up to 10) are valid !", "[a-z]{1,10}"))
                 .bind(InputWord::getText, InputWord::setText);
-        grid.addComponent(inputWordField, 0, 0, 3, 0);
+        content.addComponent(inputWordField);
 
         TextArea textArea = new TextArea("");
+
+        HorizontalLayout buttonBar = new HorizontalLayout();
+        buttonBar.setWidth("100%");
+        content.addComponent(buttonBar);
 
         Button validate = new Button("Validate");
         validate.setIcon(VaadinIcons.SEARCH);
@@ -81,7 +93,7 @@ public class MainView extends UI {
                     }
                 }
         );
-        grid.addComponent(validate, 0, 1);
+        buttonBar.addComponent(validate);
 
         Button match = new Button("Match");
         match.setIcon(VaadinIcons.SEARCH);
@@ -106,7 +118,7 @@ public class MainView extends UI {
                     }
                 }
         );
-        grid.addComponent(match, 1, 1);
+        buttonBar.addComponent(match);
 
         Button findAnagrams = new Button("Find Anagrams");
         findAnagrams.setIcon(VaadinIcons.SEARCH);
@@ -131,7 +143,7 @@ public class MainView extends UI {
                     }
                 }
         );
-        grid.addComponent(findAnagrams, 2, 1);
+        buttonBar.addComponent(findAnagrams);
 
         Button findAll = new Button("Find All");
         findAll.setIcon(VaadinIcons.SEARCH);
@@ -156,26 +168,14 @@ public class MainView extends UI {
                     }
                 }
         );
-        grid.addComponent(findAll, 3, 1);
-//            grid.addComponent(hlayout, 0, 1, 3, 1);
+        buttonBar.addComponent(findAll);
 
         // add result
-        //TextArea textArea = new TextArea("");
         textArea.setWordWrap(true);
         textArea.setEnabled(false);
         textArea.setWidth("100%");
-        textArea.setHeight("100%");
-        grid.addComponent(textArea, 0, 2, 3, 4);
-
-        final Panel mainPanel = new Panel("");
-        mainPanel.setContent(grid);
-        mainPanel.setWidth("800px");
-        mainPanel.setHeight("600px");
-
-        VerticalLayout layout = new VerticalLayout();
-        layout.addComponent(mainPanel);
-        layout.setComponentAlignment(mainPanel, Alignment.MIDDLE_CENTER);
-        layout.setSizeFull();
-        setContent(layout);
+//        textArea.setHeight("100%");
+        textArea.setRows(20);
+        content.addComponent(textArea);
     }
 }
