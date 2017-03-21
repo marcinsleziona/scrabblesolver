@@ -39,17 +39,17 @@ public class Dictionary {
 
     @PostConstruct
     public void init() {
-//        try {
-//            try (InputStream resource = Dictionary.class.getResourceAsStream("/sjp-20150906.zip")) {
-//                ZipInputStream stream = new ZipInputStream(resource);
-//                ZipEntry ze = stream.getNextEntry();
-//                if (ze.getName().equals("slowa-win.txt")) {
-//                    new BufferedReader(new InputStreamReader(stream, Charset.forName("windows-1250"))).lines().forEach(this::add);
-//                }
-//            }
-//        } catch (IOException e) {
-//            LOG.error(e.getMessage(), e);
-//        }
+        try {
+            try (InputStream resource = Dictionary.class.getResourceAsStream("/sjp-20150906.zip")) {
+                ZipInputStream stream = new ZipInputStream(resource);
+                ZipEntry ze = stream.getNextEntry();
+                if (ze.getName().equals("slowa-win.txt")) {
+                    new BufferedReader(new InputStreamReader(stream, Charset.forName("windows-1250"))).lines().forEach(this::add);
+                }
+            }
+        } catch (IOException e) {
+            LOG.error(e.getMessage(), e);
+        }
     }
 
     public void add(String text) {
