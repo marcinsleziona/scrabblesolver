@@ -36,7 +36,7 @@ public class Dictionary {
     // Add the word to the list of wordsfinder accessed by the hash builder in H
     private Map<Integer, Map<String, List<Word>>> wordKeys = new THashMap<>();
 
-    private Set<Character> characters = new HashSet<>();
+    private Set<Character> characters = new THashSet<>();
 
     @PostConstruct
     public void init() {
@@ -97,7 +97,7 @@ public class Dictionary {
 
 
     public Set<Word> getByPrefix(String prefix) {
-        Set<Word> ret = new HashSet<>();
+        Set<Word> ret = new THashSet<>();
         if (StringUtils.isBlank(prefix)) {
             return ret;
         }
@@ -116,12 +116,12 @@ public class Dictionary {
     }
 
     public Set<Word> getByCharacterAndLength(Character c, Integer length) {
-        Set<Word> ret = new HashSet<>();
+        Set<Word> ret = new THashSet<>();
         if (c == null || length == null || length <= 0) {
             return ret;
         }
 
-        Set<Word> lengthliners = new HashSet<>();
+        Set<Word> lengthliners = new THashSet<>();
         if (c == '?') {
             for (Map<Integer, Set<Word>> entry : words.values()) {
                 Set<Word> hs = entry.get(length);
@@ -144,7 +144,7 @@ public class Dictionary {
     }
 
     public Set<Word> getByKey(String key) {
-        Set<Word> res = new HashSet<>();
+        Set<Word> res = new THashSet<>();
         Map<String, List<Word>> lkwords = wordKeys.get(key.length());
         if (lkwords == null) {
             return res;
