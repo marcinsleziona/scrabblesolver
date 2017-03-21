@@ -1,5 +1,7 @@
 package pl.ms.scrabblesolver.infrastructure;
 
+import gnu.trove.map.hash.THashMap;
+import gnu.trove.set.hash.THashSet;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +15,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -29,11 +30,11 @@ public class Dictionary {
      * builder - 1st character
      * value - map of
      */
-    private Map<Character, Map<Integer, Set<Word>>> words = new HashMap<>();
+    private Map<Character, Map<Integer, Set<Word>>> words = new THashMap<>();
 
     // Create a builder that is the word's letters sorted alphabetically (and forced to one case)
     // Add the word to the list of wordsfinder accessed by the hash builder in H
-    private Map<Integer, Map<String, List<String>>> wordKeys = new HashMap<>();
+    private Map<Integer, Map<String, List<Word>>> wordKeys = new THashMap<>();
 
     private Set<Character> characters = new HashSet<>();
 
@@ -64,27 +65,27 @@ public class Dictionary {
         // add to words map -> used for simple search
         Map<Integer, Set<Word>> lwords = words.get(firstTextCharacter);
         if (lwords == null) {
-            lwords = new HashMap<>();
+            lwords = new THashMap<>();
         }
         Set<Word> lcwords = lwords.get(textLength);
         if (lcwords == null) {
-            lcwords = new HashSet<>();
+            lcwords = new THashSet<>();
         }
         lcwords.add(word);
         lwords.put(textLength, lcwords);
         words.put(firstTextCharacter, lwords);
 
         // add to words map -> used for anagrams
-        Map<String, List<String>> lwkwords = wordKeys.get(textLength);
+        Map<String, List<Word>> lwkwords = wordKeys.get(textLength);
         if (lwkwords == null) {
-            lwkwords = new HashMap<>();
+            lwkwords = new THashMap<>();
         }
         String key = word.getCharactersSorted();
-        List<String> klwkwords = lwkwords.get(key);
+        List<Word> klwkwords = lwkwords.get(key);
         if (klwkwords == null) {
             klwkwords = new ArrayList<>();
         }
-        klwkwords.add(text);
+        klwkwords.add(word);
         lwkwords.put(key, klwkwords);
         wordKeys.put(textLength, lwkwords);
 
@@ -109,7 +110,7 @@ public class Dictionary {
             if (entry.getKey() < prefix.length()) {
                 continue;
             }
-            entry.getValue().stream().filter(e -> e.startsWith(prefix)).forEachOrdered(s ->  ret.add(s));
+            entry.getValue().stream().filter(e -> e.startsWith(prefix)).forEachOrdered(s -> ret.add(s));
         }
         return ret;
     }
@@ -130,7 +131,7 @@ public class Dictionary {
             }
         } else {
             Map<Integer, Set<Word>> lwords = words.get(c);
-            if(lwords == null) {
+            if (lwords == null) {
                 return ret;
             }
             Set<Word> hs = lwords.get(length);
@@ -144,16 +145,16 @@ public class Dictionary {
 
     public Set<Word> getByKey(String key) {
         Set<Word> res = new HashSet<>();
-        Map<String, List<String>> lkwords = wordKeys.get(key.length());
+        Map<String, List<Word>> lkwords = wordKeys.get(key.length());
         if (lkwords == null) {
             return res;
         }
-        List<String> klkwords = lkwords.get(key);
+        List<Word> klkwords = lkwords.get(key);
         if (klkwords == null) {
             return res;
         }
 
-        return klkwords.parallelStream().map(Word::of).collect(Collectors.toSet());
+        return new THashSet<>(klkwords);
     }
 
     public Collection<Character> getCharacters() {
