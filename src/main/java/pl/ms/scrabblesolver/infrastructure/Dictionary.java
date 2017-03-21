@@ -34,7 +34,7 @@ public class Dictionary {
 
     // Create a builder that is the word's letters sorted alphabetically (and forced to one case)
     // Add the word to the list of wordsfinder accessed by the hash builder in H
-    private Map<Integer, Map<String, List<Word>>> wordKeys = new THashMap<>();
+    private Map<Integer, Map<Word, List<Word>>> wordKeys = new THashMap<>();
 
     private Set<Character> characters = new THashSet<>();
 
@@ -76,17 +76,17 @@ public class Dictionary {
         words.put(firstTextCharacter, lwords);
 
         // add to words map -> used for anagrams
-        Map<String, List<Word>> lwkwords = wordKeys.get(textLength);
+        Map<Word, List<Word>> lwkwords = wordKeys.get(textLength);
         if (lwkwords == null) {
             lwkwords = new THashMap<>();
         }
         String key = word.getCharactersSorted();
-        List<Word> klwkwords = lwkwords.get(key);
+        List<Word> klwkwords = lwkwords.get(Word.of(key));
         if (klwkwords == null) {
             klwkwords = new ArrayList<>();
         }
         klwkwords.add(word);
-        lwkwords.put(key, klwkwords);
+        lwkwords.put(Word.of(key), klwkwords);
         wordKeys.put(textLength, lwkwords);
 
         // add all characters that are used
@@ -145,11 +145,11 @@ public class Dictionary {
 
     public Set<Word> getByKey(String key) {
         Set<Word> res = new THashSet<>();
-        Map<String, List<Word>> lkwords = wordKeys.get(key.length());
+        Map<Word, List<Word>> lkwords = wordKeys.get(key.length());
         if (lkwords == null) {
             return res;
         }
-        List<Word> klkwords = lkwords.get(key);
+        List<Word> klkwords = lkwords.get(Word.of(key));
         if (klkwords == null) {
             return res;
         }
