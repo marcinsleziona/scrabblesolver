@@ -1,6 +1,7 @@
 package pl.ms.scrabblesolver.domain;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.*;
@@ -12,8 +13,8 @@ import java.util.Arrays;
  * Created by Marcin on 2017-03-19.
  */
 @JsonAutoDetect(
-        fieldVisibility = JsonAutoDetect.Visibility.ANY,
-        getterVisibility = JsonAutoDetect.Visibility.NONE,
+        fieldVisibility = JsonAutoDetect.Visibility.NONE,
+        getterVisibility = JsonAutoDetect.Visibility.PUBLIC_ONLY,
         isGetterVisibility = JsonAutoDetect.Visibility.NONE,
         setterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Word implements Serializable, Comparable<Word> {
@@ -55,6 +56,7 @@ public class Word implements Serializable, Comparable<Word> {
         return getText().charAt(idx);
     }
 
+    @JsonIgnore
     public String getCharactersSorted() {
         if (text == null) {
             return null;

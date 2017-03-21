@@ -58,12 +58,12 @@ public class MainView extends UI {
         inputWordField.setWidth("100%");
         inputWordField.setComponentError(new UserError("Only characters are valid !"));
         inputWordField.setResponsive(true);
-        inputWordField.setPlaceholder("Please enter the text ...");
+        inputWordField.setPlaceholder("Please enter the text, '?' replaces one character ...");
         Binder<InputWord> inputWordBinder = new Binder<>();
         inputWordBinder
                 .forField(inputWordField)
                 .asRequired("Please enter the text !")
-                .withValidator(new RegexpValidator("Only characters (up to 10) are valid !", "[a-z]{1,10}"))
+                .withValidator(new RegexpValidator("Only characters (up to 10) are valid !", "[a-z?]{1,10}"))
                 .bind(InputWord::getText, InputWord::setText);
         content.addComponent(inputWordField);
 
