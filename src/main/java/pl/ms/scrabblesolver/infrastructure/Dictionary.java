@@ -39,17 +39,17 @@ public class Dictionary {
 
     @PostConstruct
     public void init() {
-        try {
-            try (InputStream resource = Dictionary.class.getResourceAsStream("/sjp-20150906.zip")) {
-                ZipInputStream stream = new ZipInputStream(resource);
-                ZipEntry ze = stream.getNextEntry();
-                if (ze.getName().equals("slowa-win.txt")) {
-                    new BufferedReader(new InputStreamReader(stream, Charset.forName("windows-1250"))).lines().forEach(this::add);
-                }
-            }
-        } catch (IOException e) {
-            LOG.error(e.getMessage(), e);
-        }
+//        try {
+//            try (InputStream resource = Dictionary.class.getResourceAsStream("/sjp-20150906.zip")) {
+//                ZipInputStream stream = new ZipInputStream(resource);
+//                ZipEntry ze = stream.getNextEntry();
+//                if (ze.getName().equals("slowa-win.txt")) {
+//                    new BufferedReader(new InputStreamReader(stream, Charset.forName("windows-1250"))).lines().forEach(this::add);
+//                }
+//            }
+//        } catch (IOException e) {
+//            LOG.error(e.getMessage(), e);
+//        }
     }
 
     public void add(String text) {
@@ -73,20 +73,20 @@ public class Dictionary {
         lcwords.add(word);
         lwords.put(textLength, lcwords);
         words.put(firstTextCharacter, lwords);
-//
-//        // add to words map -> used for anagrams
-//        Map<String, List<String>> lwkwords = wordKeys.get(textLength);
-//        if (lwkwords == null) {
-//            lwkwords = new HashMap<>();
-//        }
-//        String key = word.getCharactersSorted();
-//        List<String> klwkwords = lwkwords.get(key);
-//        if (klwkwords == null) {
-//            klwkwords = new ArrayList<>();
-//        }
-//        klwkwords.add(text);
-//        lwkwords.put(key, klwkwords);
-//        wordKeys.put(textLength, lwkwords);
+
+        // add to words map -> used for anagrams
+        Map<String, List<String>> lwkwords = wordKeys.get(textLength);
+        if (lwkwords == null) {
+            lwkwords = new HashMap<>();
+        }
+        String key = word.getCharactersSorted();
+        List<String> klwkwords = lwkwords.get(key);
+        if (klwkwords == null) {
+            klwkwords = new ArrayList<>();
+        }
+        klwkwords.add(text);
+        lwkwords.put(key, klwkwords);
+        wordKeys.put(textLength, lwkwords);
 
         // add all characters that are used
         for (char ch : word.getText().toCharArray()) {
