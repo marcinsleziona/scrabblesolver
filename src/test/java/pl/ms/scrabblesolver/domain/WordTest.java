@@ -14,6 +14,22 @@ public class WordTest {
 
     @Test
     @Parameters
+    public void toString(String text, String result) {
+        Assert.assertEquals(result, Word.of(text).toString());
+    }
+
+    public Object[] parametersForToString() {
+        return new Object[]{
+                new Object[]{null, null},
+                new Object[]{"", ""},
+                new Object[]{"  ", ""},
+                new Object[]{"test", "test"}
+        };
+    }
+
+
+    @Test
+    @Parameters
     public void isEmpty(String text, boolean result) {
         Assert.assertEquals(result, Word.of(text).isEmpty());
     }
