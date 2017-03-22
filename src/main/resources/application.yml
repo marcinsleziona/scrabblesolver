@@ -1,0 +1,25 @@
+spring:
+    application:
+        name: Scrabble Solver
+    jmx:
+        enabled: false
+
+server:
+  port: ${PORT:8080}
+
+management:
+    security:
+        enabled: false
+
+dictionary:
+    complete:
+        enabled: false
+
+---
+
+spring:
+    profiles: prod
+
+dictionary:
+    complete:
+        enabled: true

@@ -5,26 +5,17 @@ import gnu.trove.set.hash.THashSet;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
+import pl.ms.scrabblesolver.domain.Dictionary;
 import pl.ms.scrabblesolver.domain.Word;
 
-import javax.annotation.PostConstruct;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
 import java.util.*;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 
 /*
- * Created by Marcin on 2017-03-19.
+ * Created by Marcin on 2017-03-22.
  */
-@Component
-public class Dictionary {
+public class DictionaryImpl implements Dictionary {
 
-    private final static Logger LOG = LoggerFactory.getLogger(Dictionary.class);
+    private final static Logger LOG = LoggerFactory.getLogger(DictionaryCompleteImpl.class);
 
     /**
      * builder - 1st character
@@ -38,20 +29,6 @@ public class Dictionary {
 
     private Set<Character> characters = new THashSet<>();
 
-    @PostConstruct
-    public void init() {
-        try {
-            try (InputStream resource = Dictionary.class.getResourceAsStream("/sjp-20150906.zip")) {
-                ZipInputStream stream = new ZipInputStream(resource);
-                ZipEntry ze = stream.getNextEntry();
-                if (ze.getName().equals("slowa-win.txt")) {
-                    new BufferedReader(new InputStreamReader(stream, Charset.forName("windows-1250"))).lines().forEach(this::add);
-                }
-            }
-        } catch (IOException e) {
-            LOG.error(e.getMessage(), e);
-        }
-    }
 
     public void add(String text) {
         if (StringUtils.isBlank(text)) {
@@ -95,7 +72,7 @@ public class Dictionary {
         }
     }
 
-
+    @Override
     public Set<Word> getByPrefix(String prefix) {
         Set<Word> ret = new THashSet<>();
         if (StringUtils.isBlank(prefix)) {
@@ -115,6 +92,7 @@ public class Dictionary {
         return ret;
     }
 
+    @Override
     public Set<Word> getByCharacterAndLength(Character c, Integer length) {
         Set<Word> ret = new THashSet<>();
         if (c == null || length == null || length <= 0) {
@@ -143,6 +121,7 @@ public class Dictionary {
         return lengthliners;
     }
 
+    @Override
     public Set<Word> getByKey(String key) {
         Set<Word> res = new THashSet<>();
         Map<Word, List<Word>> lkwords = wordKeys.get(key.length());
@@ -160,5 +139,4 @@ public class Dictionary {
     public Collection<Character> getCharacters() {
         return Collections.unmodifiableCollection(characters);
     }
-
 }

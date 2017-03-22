@@ -2,8 +2,9 @@ package pl.ms.scrabblesolver.application.validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.ms.scrabblesolver.domain.Dictionary;
 import pl.ms.scrabblesolver.domain.Word;
-import pl.ms.scrabblesolver.infrastructure.Dictionary;
+import pl.ms.scrabblesolver.infrastructure.DictionaryCompleteImpl;
 
 /*
  * Created by Marcin on 2017-03-19.

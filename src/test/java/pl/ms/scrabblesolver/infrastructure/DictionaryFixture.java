@@ -1,16 +1,15 @@
 package pl.ms.scrabblesolver.infrastructure;
 
 /*
- * Created by Marcin on 2017-03-19.
+ * Created by Marcin on 2017-03-22.
  */
 public class DictionaryFixture {
 
-    public static Dictionary build(String... texts) {
-        Dictionary dictionary = new Dictionary();
+    public static DictionaryImpl build(String... texts) {
+        DictionaryImpl mock = new DictionaryImpl();
         for (String text : texts) {
-            dictionary.add(text);
+            mock.add(text);
         }
-        return dictionary;
+        return mock;
     }
-
 }

@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import pl.ms.scrabblesolver.application.builder.WordsFixedSizeBuilder;
-import pl.ms.scrabblesolver.infrastructure.Dictionary;
-import pl.ms.scrabblesolver.infrastructure.DictionaryFixture;
+import pl.ms.scrabblesolver.infrastructure.DictionaryCompleteImpl;
+import pl.ms.scrabblesolver.infrastructure.DictionaryMockImpl;
 
 /*
  * Created by Marcin on 2017-03-19.
@@ -19,18 +19,16 @@ import pl.ms.scrabblesolver.infrastructure.DictionaryFixture;
 @SpringBootTest
 public class WordAnagramServiceTest {
 
+    @Autowired
     private WordAnagramService wordAnagramService;
 
-    @Autowired
-    private WordsFixedSizeBuilder wordsFixedSizeBuilder;
-
-    @Before
-    public void before() {
-        Dictionary dictionary = DictionaryFixture.build(
-                "aa", "ab", "ac", "ba", "bb", "bc",
-                "aaa", "aba", "aca");
-        this.wordAnagramService = new WordAnagramServiceImpl(dictionary, wordsFixedSizeBuilder);
-    }
+//    @Before
+//    public void before() {
+//        DictionaryCompleteImpl dictionary = DictionaryMockImpl.build(
+//                "aa", "ab", "ac", "ba", "bb", "bc",
+//                "aaa", "aba", "aca");
+//        this.wordAnagramService = new WordAnagramServiceImpl(dictionary, wordsFixedSizeBuilder);
+//    }
 
     @Test
     public void shouldReturnEmptyListForNull() {

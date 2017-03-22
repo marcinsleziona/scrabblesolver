@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.ms.scrabblesolver.application.builder.WordsAllOfBuilder;
 import pl.ms.scrabblesolver.application.builder.WordsFixedSizeBuilder;
+import pl.ms.scrabblesolver.domain.Dictionary;
 import pl.ms.scrabblesolver.domain.Word;
-import pl.ms.scrabblesolver.infrastructure.Dictionary;
 
 import java.util.*;
 

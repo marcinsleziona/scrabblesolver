@@ -4,7 +4,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import pl.ms.scrabblesolver.infrastructure.Dictionary;
+import pl.ms.scrabblesolver.domain.Dictionary;
 import pl.ms.scrabblesolver.infrastructure.DictionaryFixture;
 
 /*

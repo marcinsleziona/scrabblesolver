@@ -2,12 +2,10 @@ package pl.ms.scrabblesolver.application.matcher;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
-import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.stereotype.Service;
+import pl.ms.scrabblesolver.domain.Dictionary;
 import pl.ms.scrabblesolver.domain.Word;
-import pl.ms.scrabblesolver.infrastructure.Dictionary;
+import pl.ms.scrabblesolver.infrastructure.DictionaryCompleteImpl;
 
 import java.util.ArrayList;
 import java.util.Collections;

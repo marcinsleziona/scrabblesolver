@@ -10,12 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import pl.ms.scrabblesolver.application.builder.WordsAllOfBuilder;
 import pl.ms.scrabblesolver.application.builder.WordsFixedSizeBuilder;
-import pl.ms.scrabblesolver.domain.Word;
-import pl.ms.scrabblesolver.infrastructure.Dictionary;
-import pl.ms.scrabblesolver.infrastructure.DictionaryFixture;
-
-import java.util.Arrays;
-import java.util.List;
+import pl.ms.scrabblesolver.infrastructure.DictionaryCompleteImpl;
+import pl.ms.scrabblesolver.infrastructure.DictionaryMockImpl;
 
 /*
  * Created by Marcin on 2017-03-19.
@@ -24,20 +20,20 @@ import java.util.List;
 @SpringBootTest
 public class WordFinderTest {
 
+    @Autowired
     private WordsFinder wordsFinder;
-
     @Autowired
     private WordsFixedSizeBuilder wordsFixedSizeBuilder;
     @Autowired
     private WordsAllOfBuilder wordsAllOfBuilder;
 
-    @Before
-    public void before() {
-        Dictionary dictionary = DictionaryFixture.build(
-                "aa", "ab", "ac", "ba", "bb", "bc",
-                "aaa", "aba", "aca");
-        this.wordsFinder = new WordsFinderImpl(dictionary, wordsFixedSizeBuilder, wordsAllOfBuilder);
-    }
+//    @Before
+//    public void before() {
+//        DictionaryCompleteImpl dictionary = DictionaryMockImpl.build(
+//                "aa", "ab", "ac", "ba", "bb", "bc",
+//                "aaa", "aba", "aca");
+//        this.wordsFinder = new WordsFinderImpl(dictionary, wordsFixedSizeBuilder, wordsAllOfBuilder);
+//    }
 
     @Test
     public void shouldReturnEmptyListForNull() {

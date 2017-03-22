@@ -3,9 +3,11 @@ package pl.ms.scrabblesolver.application.validator;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import pl.ms.scrabblesolver.domain.Dictionary;
 import pl.ms.scrabblesolver.domain.Word;
-import pl.ms.scrabblesolver.infrastructure.Dictionary;
+import pl.ms.scrabblesolver.infrastructure.DictionaryCompleteImpl;
 import pl.ms.scrabblesolver.infrastructure.DictionaryFixture;
+import pl.ms.scrabblesolver.infrastructure.DictionaryMockImpl;
 
 /*
  * Created by Marcin on 2017-03-19.
