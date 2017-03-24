@@ -1,0 +1,97 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building scrabble-solver 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+Downloading: http://jenkins01.xoc.tele2net.at:8100/nexus/content/groups/tele2-repo-group/com/vaadin/vaadin-icons/3.0.1/vaadin-icons-3.0.1.pom
+1/7 KB   3/7 KB   4/7 KB   5/7 KB   7/7 KB            Downloaded: http://jenkins01.xoc.tele2net.at:8100/nexus/content/groups/tele2-repo-group/com/vaadin/vaadin-icons/3.0.1/vaadin-icons-3.0.1.pom (7 KB at 3.3 KB/sec)
+Downloading: http://jenkins01.xoc.tele2net.at:8100/nexus/content/groups/tele2-repo-group/com/vaadin/vaadin-icons/3.0.1/vaadin-icons-3.0.1.jar
+1/265 KB   5/265 KB   7/265 KB   8/265 KB   12/265 KB   16/265 KB   17/265 KB   19/265 KB   20/265 KB   21/265 KB   23/265 KB   25/265 KB   27/265 KB   28/265 KB   32/265 KB   36/265 KB   40/265 KB   42/265 KB   43/265 KB   45/265 KB   46/265 KB   47/265 KB   49/265 KB   50/265 KB   51/265 KB   53/265 KB   54/265 KB   55/265 KB   57/265 KB   58/265 KB   59/265 KB   61/265 KB   62/265 KB   65/265 KB   66/265 KB   67/265 KB   69/265 KB   70/265 KB   71/265 KB   73/265 KB   74/265 KB   75/265 KB   77/265 KB   78/265 KB   79/265 KB   81/265 KB   82/265 KB   83/265 KB   85/265 KB   86/265 KB   87/265 KB   89/265 KB   90/265 KB   91/265 KB   93/265 KB   94/265 KB   95/265 KB   97/265 KB   98/265 KB   99/265 KB   103/265 KB   105/265 KB   107/265 KB   109/265 KB   110/265 KB   111/265 KB   113/265 KB   115/265 KB   117/265 KB   118/265 KB   119/265 KB   121/265 KB   122/265 KB   123/265 KB   125/265 KB   126/265 KB   127/265 KB   129/265 KB   130/265 KB   131/265 KB   134/265 KB   137/265 KB   139/265 KB   141/265 KB   142/265 KB   143/265 KB   145/265 KB   146/265 KB   147/265 KB   149/265 KB   151/265 KB   153/265 KB   154/265 KB   155/265 KB   157/265 KB   158/265 KB   159/265 KB   161/265 KB   162/265 KB   163/265 KB   165/265 KB   166/265 KB   167/265 KB   169/265 KB   170/265 KB   171/265 KB   173/265 KB   174/265 KB   176/265 KB   177/265 KB   178/265 KB   180/265 KB   181/265 KB   182/265 KB   184/265 KB   185/265 KB   186/265 KB   188/265 KB   189/265 KB   190/265 KB   192/265 KB   193/265 KB   194/265 KB   196/265 KB   197/265 KB   198/265 KB   200/265 KB   201/265 KB   202/265 KB   204/265 KB   205/265 KB   206/265 KB   208/265 KB   209/265 KB   210/265 KB   212/265 KB   213/265 KB   214/265 KB   216/265 KB   217/265 KB   218/265 KB   220/265 KB   221/265 KB   222/265 KB   224/265 KB   225/265 KB   226/265 KB   228/265 KB   229/265 KB   230/265 KB   232/265 KB   233/265 KB   234/265 KB   236/265 KB   237/265 KB   238/265 KB   240/265 KB   241/265 KB   242/265 KB   244/265 KB   245/265 KB   246/265 KB   248/265 KB   249/265 KB   252/265 KB   253/265 KB   254/265 KB   258/265 KB   262/265 KB   264/265 KB   265/265 KB                Downloaded: http://jenkins01.xoc.tele2net.at:8100/nexus/content/groups/tele2-repo-group/com/vaadin/vaadin-icons/3.0.1/vaadin-icons-3.0.1.jar (265 KB at 45.4 KB/sec)
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.4:tree (default-cli) @ scrabblesolver ---
+[INFO] pl.ms.scrabblesolver:scrabblesolver:jar:0.0.1-SNAPSHOT
+[INFO] +- org.springframework.boot:spring-boot-starter-actuator:jar:1.5.2.RELEASE:compile
+[INFO] |  +- org.springframework.boot:spring-boot-starter:jar:1.5.2.RELEASE:compile
+[INFO] |  |  +- org.springframework.boot:spring-boot:jar:1.5.2.RELEASE:compile
+[INFO] |  |  +- org.springframework.boot:spring-boot-autoconfigure:jar:1.5.2.RELEASE:compile
+[INFO] |  |  +- org.springframework.boot:spring-boot-starter-logging:jar:1.5.2.RELEASE:compile
+[INFO] |  |  |  +- ch.qos.logback:logback-classic:jar:1.1.11:compile
+[INFO] |  |  |  |  \- ch.qos.logback:logback-core:jar:1.1.11:compile
+[INFO] |  |  |  +- org.slf4j:jcl-over-slf4j:jar:1.7.24:compile
+[INFO] |  |  |  +- org.slf4j:jul-to-slf4j:jar:1.7.24:compile
+[INFO] |  |  |  \- org.slf4j:log4j-over-slf4j:jar:1.7.24:compile
+[INFO] |  |  \- org.yaml:snakeyaml:jar:1.17:runtime
+[INFO] |  \- org.springframework.boot:spring-boot-actuator:jar:1.5.2.RELEASE:compile
+[INFO] |     \- org.springframework:spring-context:jar:4.3.7.RELEASE:compile
+[INFO] +- org.springframework.boot:spring-boot-actuator-docs:jar:1.5.2.RELEASE:compile
+[INFO] |  +- org.springframework.hateoas:spring-hateoas:jar:0.23.0.RELEASE:compile
+[INFO] |  |  +- org.springframework:spring-aop:jar:4.3.7.RELEASE:compile
+[INFO] |  |  \- org.springframework:spring-beans:jar:4.3.7.RELEASE:compile
+[INFO] |  \- org.springframework:spring-core:jar:4.3.7.RELEASE:compile
+[INFO] +- org.springframework.boot:spring-boot-starter-data-rest:jar:1.5.2.RELEASE:compile
+[INFO] |  +- com.fasterxml.jackson.core:jackson-annotations:jar:2.8.0:compile
+[INFO] |  +- com.fasterxml.jackson.core:jackson-databind:jar:2.8.7:compile
+[INFO] |  |  \- com.fasterxml.jackson.core:jackson-core:jar:2.8.7:compile
+[INFO] |  \- org.springframework.data:spring-data-rest-webmvc:jar:2.6.1.RELEASE:compile
+[INFO] |     \- org.springframework.data:spring-data-rest-core:jar:2.6.1.RELEASE:compile
+[INFO] |        +- org.springframework:spring-tx:jar:4.3.7.RELEASE:compile
+[INFO] |        +- org.springframework.data:spring-data-commons:jar:1.13.1.RELEASE:compile
+[INFO] |        +- org.springframework.plugin:spring-plugin-core:jar:1.2.0.RELEASE:compile
+[INFO] |        \- org.atteo:evo-inflector:jar:1.2.1:compile
+[INFO] +- com.vaadin:vaadin-spring-boot-starter:jar:2.0.0:compile
+[INFO] |  +- com.vaadin:vaadin-spring-boot:jar:2.0.0:compile
+[INFO] |  |  \- com.vaadin:vaadin-spring:jar:2.0.0:compile
+[INFO] |  |     \- com.vaadin:vaadin-server:jar:8.0.0:compile (version managed from 8.0-SNAPSHOT)
+[INFO] |  |        +- com.vaadin:vaadin-sass-compiler:jar:0.9.13:compile
+[INFO] |  |        |  +- org.w3c.css:sac:jar:1.3:compile
+[INFO] |  |        |  \- com.vaadin.external.flute:flute:jar:1.3.0.gg2:compile
+[INFO] |  |        +- com.vaadin:vaadin-shared:jar:8.0.0:compile
+[INFO] |  |        +- org.jsoup:jsoup:jar:1.8.3:compile
+[INFO] |  |        \- com.googlecode.gentyref:gentyref:jar:1.2.0:compile
+[INFO] |  +- com.vaadin:vaadin-themes:jar:8.0.0:compile (version managed from 8.0-SNAPSHOT)
+[INFO] |  \- com.vaadin:vaadin-client-compiled:jar:8.0.0:compile (version managed from 8.0-SNAPSHOT)
+[INFO] +- org.springframework.boot:spring-boot-starter-web:jar:1.5.2.RELEASE:compile
+[INFO] |  +- org.springframework.boot:spring-boot-starter-tomcat:jar:1.5.2.RELEASE:compile
+[INFO] |  |  +- org.apache.tomcat.embed:tomcat-embed-core:jar:8.5.11:compile
+[INFO] |  |  +- org.apache.tomcat.embed:tomcat-embed-el:jar:8.5.11:compile
+[INFO] |  |  \- org.apache.tomcat.embed:tomcat-embed-websocket:jar:8.5.11:compile
+[INFO] |  +- org.hibernate:hibernate-validator:jar:5.3.4.Final:compile
+[INFO] |  |  +- javax.validation:validation-api:jar:1.1.0.Final:compile
+[INFO] |  |  +- org.jboss.logging:jboss-logging:jar:3.3.0.Final:compile
+[INFO] |  |  \- com.fasterxml:classmate:jar:1.3.3:compile (version managed from 1.3.1)
+[INFO] |  +- org.springframework:spring-web:jar:4.3.7.RELEASE:compile
+[INFO] |  \- org.springframework:spring-webmvc:jar:4.3.7.RELEASE:compile
+[INFO] |     \- org.springframework:spring-expression:jar:4.3.7.RELEASE:compile
+[INFO] +- org.springframework.boot:spring-boot-starter-test:jar:1.5.2.RELEASE:test
+[INFO] |  +- org.springframework.boot:spring-boot-test:jar:1.5.2.RELEASE:test
+[INFO] |  +- org.springframework.boot:spring-boot-test-autoconfigure:jar:1.5.2.RELEASE:test
+[INFO] |  +- com.jayway.jsonpath:json-path:jar:2.2.0:test
+[INFO] |  |  \- net.minidev:json-smart:jar:2.2.1:test
+[INFO] |  |     \- net.minidev:accessors-smart:jar:1.1:test
+[INFO] |  |        \- org.ow2.asm:asm:jar:5.0.3:test
+[INFO] |  +- junit:junit:jar:4.12:test
+[INFO] |  +- org.assertj:assertj-core:jar:2.6.0:test
+[INFO] |  +- org.mockito:mockito-core:jar:1.10.19:test
+[INFO] |  |  \- org.objenesis:objenesis:jar:2.1:test
+[INFO] |  +- org.hamcrest:hamcrest-core:jar:1.3:test
+[INFO] |  +- org.hamcrest:hamcrest-library:jar:1.3:test
+[INFO] |  +- org.skyscreamer:jsonassert:jar:1.4.0:test
+[INFO] |  |  \- com.vaadin.external.google:android-json:jar:0.0.20131108.vaadin1:test
+[INFO] |  \- org.springframework:spring-test:jar:4.3.7.RELEASE:test
+[INFO] +- pl.pragmatists:JUnitParams:jar:1.0.5:test
+[INFO] +- org.apache.commons:commons-lang3:jar:3.4:compile
+[INFO] +- org.apache.commons:commons-collections4:jar:4.1:compile
+[INFO] +- org.slf4j:slf4j-api:jar:1.7.25:compile
+[INFO] +- org.apache.logging.log4j:log4j-slf4j-impl:jar:2.8.1:compile
+[INFO] +- org.apache.logging.log4j:log4j-api:jar:2.8.1:compile
+[INFO] +- org.apache.logging.log4j:log4j-core:jar:2.8.1:compile
+[INFO] +- org.apache.logging.log4j:log4j-jcl:jar:2.8.1:compile
+[INFO] |  \- commons-logging:commons-logging:jar:1.2:compile
+[INFO] \- com.vaadin:vaadin-icons:jar:3.0.1:compile
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 11.826 s
+[INFO] Finished at: 2017-03-21T20:00:34+01:00
+[INFO] Final Memory: 26M/463M
+[INFO] ------------------------------------------------------------------------

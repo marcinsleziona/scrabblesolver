@@ -25,7 +25,7 @@ public class DictionaryCompleteImpl extends DictionaryImpl {
     @PostConstruct
     public void init() {
         try {
-            try (InputStream resource = DictionaryCompleteImpl.class.getResourceAsStream("/sjp-20150906.zip")) {
+            try (InputStream resource = DictionaryCompleteImpl.class.getResourceAsStream("/sjp-a_f.zip")) {
                 ZipInputStream stream = new ZipInputStream(resource);
                 ZipEntry ze = stream.getNextEntry();
                 if (ze.getName().equals("slowa-win.txt")) {
