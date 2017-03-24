@@ -1,10 +1,9 @@
 package pl.ms.scrabblesolver.interfaces.view;
 
 import com.vaadin.annotations.Theme;
-import com.vaadin.data.Binder;
-import com.vaadin.data.BinderValidationStatus;
-import com.vaadin.data.ValidationResult;
+import com.vaadin.data.*;
 import com.vaadin.data.validator.RegexpValidator;
+import com.vaadin.data.validator.StringLengthValidator;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.UserError;
 import com.vaadin.server.VaadinRequest;
@@ -63,7 +62,14 @@ public class MainView extends UI {
         inputWordBinder
                 .forField(inputWordField)
                 .asRequired("Please enter the text !")
-                .withValidator(new RegexpValidator("Only characters (up to 10) are valid !", "[a-z?]{1,10}"))
+                .withValidator(new StringLengthValidator("Up to 10 characters are valid", 1, 10))
+                .withValidator(new RegexpValidator("Only characters are valid !", "[a-z?]{1,10}"))
+                .withValidator((Validator<String>) (value, context) -> {
+                    if(StringUtils.countMatches(value,"?") >= 4) {
+                        return ValidationResult.error("To many '?' in the input char");
+                    }
+                    return ValidationResult.ok();
+                })
                 .bind(InputWord::getText, InputWord::setText);
         content.addComponent(inputWordField);
 

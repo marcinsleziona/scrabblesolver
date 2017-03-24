@@ -25,12 +25,19 @@ public class DictionaryCompleteImpl extends DictionaryImpl {
     @PostConstruct
     public void init() {
         try {
-            try (InputStream resource = DictionaryCompleteImpl.class.getResourceAsStream("/sjp-a_f.zip")) {
+            try (InputStream resource = DictionaryCompleteImpl.class.getResourceAsStream("/sjp-a_m.zip")) {
                 ZipInputStream stream = new ZipInputStream(resource);
-                ZipEntry ze = stream.getNextEntry();
-                if (ze.getName().equals("slowa-win.txt")) {
-                    new BufferedReader(new InputStreamReader(stream, Charset.forName("windows-1250"))).lines().forEach(this::add);
+
+                for (; ; ) {
+                    ZipEntry ze = stream.getNextEntry();
+                    if (ze == null) {
+                        break;
+                    }
+                    if (ze.getName().equals("slowa-win.txt")) {
+                        new BufferedReader(new InputStreamReader(stream, Charset.forName("windows-1250"))).lines().forEach(this::add);
+                    }
                 }
+
             }
         } catch (IOException e) {
             LOG.error(e.getMessage(), e);
