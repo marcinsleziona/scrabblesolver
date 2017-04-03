@@ -63,7 +63,7 @@ public class MainView extends UI {
                 .forField(inputWordField)
                 .asRequired("Please enter the text !")
                 .withValidator(new StringLengthValidator("Up to 10 characters are valid", 1, 10))
-                .withValidator(new RegexpValidator("Only characters are valid !", "[a-z?]{1,10}"))
+                .withValidator(new RegexpValidator("Only characters are valid !", "[a-z?\\u0105\\u0107\\u0119\\u0142\\u0144\\u00F3\\u015B\\u017A\\u017C]{1,10}"))
                 .withValidator((Validator<String>) (value, context) -> {
                     if(StringUtils.countMatches(value,"?") >= 4) {
                         return ValidationResult.error("To many '?' in the input char");
