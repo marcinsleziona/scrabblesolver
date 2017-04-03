@@ -1,6 +1,7 @@
 package pl.ms.scrabblesolver.interfaces.rest.builder;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.ms.scrabblesolver.application.builder.WordsFixedSizeBuilder;
 
@@ -23,16 +24,16 @@ public class WordsFixedSizeBuilderRestController {
     }
 
     @PostMapping("/buildWithAlphabet")
-    public Set<String> find(
+    public ResponseEntity<Set<String>> find(
             @RequestPart("alphabet") String alphabet,
             @RequestPart("input") String input) {
         List<Character> lalphabet = new ArrayList<>();
         for (char c : alphabet.toCharArray()) {
             lalphabet.add(c);
         }
-        return this.wordsFixedSizeBuilder.build(
+        return ResponseEntity.ok(this.wordsFixedSizeBuilder.build(
                 lalphabet,
-                input);
+                input));
     }
 
 }
