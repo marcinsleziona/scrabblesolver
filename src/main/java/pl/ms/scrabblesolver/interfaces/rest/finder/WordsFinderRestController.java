@@ -26,6 +26,7 @@ public class WordsFinderRestController {
 
     @GetMapping("/find")
     public List<Word> find(@RequestParam("input") String inputCharacters) {
+        System.out.println("test");
         return this.wordsFinder.findWords(inputCharacters);
     }
 }
