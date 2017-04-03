@@ -25,7 +25,7 @@ public class WordsFixedSizeBuilderRestController {
     @PostMapping("/buildWithAlphabet")
     public Set<String> find(
             @RequestPart("alphabet") String alphabet,
-            @RequestParam("input") String input) {
+            @RequestPart("input") String input) {
         List<Character> lalphabet = new ArrayList<>();
         for (char c : alphabet.toCharArray()) {
             lalphabet.add(c);
